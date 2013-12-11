@@ -7,11 +7,13 @@ import java.io.Serializable;
 
 import org.hibernate.FlushMode;
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
  * @author gaurav.khullar
+ * 
  *
  */
 public class CDEntityManager extends HibernateDaoSupport{
@@ -78,5 +80,13 @@ public class CDEntityManager extends HibernateDaoSupport{
 
 	public void setFlushMode(FlushMode flushMode) {
 		getSession().setFlushMode(flushMode);		
+	}
+	
+	public Query createQuery(String hqlString) {;
+		return getSession().createQuery(hqlString);
+	}
+
+	public Query createSQLQuery(String sqlString) {
+		return (getSession().createSQLQuery(sqlString));
 	}
 }

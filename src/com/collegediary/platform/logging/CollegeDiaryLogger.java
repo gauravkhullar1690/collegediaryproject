@@ -17,6 +17,7 @@ public class CollegeDiaryLogger {
 	public static final String ERROR_NO_PREFIX = "Error #: ";
 	public static final String TEXT_PREFIX = "Text: ";
 	public static final String DETAILS_PREFIX = "Details: ";
+
 	/**
 	 * -----------------------------------------------------------------------
 	 * Public Methods (logging methods)
@@ -55,6 +56,28 @@ public class CollegeDiaryLogger {
 			a_message = formatMessage((Exception) a_message);
 		if (null != a_message)
 			Logger.getLogger(a_categoryName).info(
+					concatMethodName(a_methodName, a_message.toString()));
+	}
+
+	/**
+	 * -----------------------------------------------------------------------
+	 * Public Methods (logging methods)
+	 * -----------------------------------------------------------------------
+	 * This method logs message of category with debug priority.
+	 * 
+	 * @param a_categoryName
+	 *            The name of the message category.
+	 * @param a_methodName
+	 *            The method name to be logged.
+	 * @param a_message
+	 *            The message to be logged.
+	 */
+	public static final void trace(String a_categoryName, String a_methodName,
+			Object a_message) {
+		if (a_message instanceof Exception)
+			a_message = formatMessage((Exception) a_message);
+		if (null != a_message)
+			Logger.getLogger(a_categoryName).trace(
 					concatMethodName(a_methodName, a_message.toString()));
 	}
 
