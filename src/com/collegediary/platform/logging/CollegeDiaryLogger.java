@@ -58,6 +58,31 @@ public class CollegeDiaryLogger {
 					concatMethodName(a_methodName, a_message.toString()));
 	}
 
+
+	/**
+	 * -----------------------------------------------------------------------
+	 * Public Methods (logging methods)
+	 * -----------------------------------------------------------------------
+	 * This method logs message of category with debug priority.
+	 * 
+	 * @param a_categoryName
+	 *            The name of the message category.
+	 * @param a_methodName
+	 *            The method name to be logged.
+	 * @param a_message
+	 *            The message to be logged.
+	 */
+	public static final void trace(String a_categoryName, String a_methodName,
+			Object a_message) {
+		if (a_message instanceof Exception)
+			a_message = formatMessage((Exception) a_message);
+		if (null != a_message)
+			Logger.getLogger(a_categoryName).trace(
+					concatMethodName(a_methodName, a_message.toString()));
+	}
+
+
+
 	/**
 	 * This method logs message of category with warn priority.
 	 * 

@@ -87,6 +87,15 @@ public class CDEntityManager extends HibernateDaoSupport{
 	public List<MasterUser> selectAll(){
         DetachedCriteria criteria = DetachedCriteria.forClass(MasterUser.class);
         return getHibernateTemplate().findByCriteria(criteria);
-    }
+    	}
+
+		
+	public Query createQuery(String hqlString) {;
+		return getSession().createQuery(hqlString);
+	}
+
+	public Query createSQLQuery(String sqlString) {
+		return (getSession().createSQLQuery(sqlString));
+	}
  
 }
