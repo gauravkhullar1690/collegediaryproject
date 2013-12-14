@@ -3,6 +3,11 @@
  */
 package com.collegediary.platform.services;
 
+import java.util.Collection;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import com.collegediary.model.user.MasterUser;
 
 /**
@@ -18,4 +23,7 @@ public interface IUserServices {
 	 * @return
 	 */
 	public MasterUser createNewUser(MasterUser masterUser);
+	public void deleteUser(MasterUser masterUser);
+	public void updateUser(MasterUser masterUser);
+	public void authenticateUser(MasterUser masterUser,HttpServletResponse response);
 }
