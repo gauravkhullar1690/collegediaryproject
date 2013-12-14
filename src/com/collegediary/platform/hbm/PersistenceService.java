@@ -92,6 +92,11 @@ public class PersistenceService implements IPersistenceService {
 		entityManager.clear();
 	}
 	
+	public List<MasterUser> findUsers()
+	{
+		return entityManager.selectAll();
+	}
+
 	public List executeQuery(String sql, Object[] params) {
     	CollegeDiaryLogger.trace(this.getClass().getName(), "executeQuery", "query :"+sql);
         Query query = entityManager.createQuery(sql);

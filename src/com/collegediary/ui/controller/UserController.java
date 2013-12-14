@@ -7,8 +7,11 @@ package com.collegediary.ui.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,10 +42,12 @@ public class UserController implements Serializable {
 		Map<String, String> returnMap = new HashMap<String,String>();
 		try{
 			 MasterUser a = userService.createNewUser(masterUser);
+			 System.out.println(a.getId());
 		} 
 		catch (Exception e) {
 			CollegeDiaryLogger.error(CLASS_NAME, "createNewUser", e,true);
 		}
+		CollegeDiaryLogger.debug(CLASS_NAME, "findUser", "Inside createNewUser method");
 		return returnMap;
 	}
 	
@@ -74,7 +79,7 @@ public class UserController implements Serializable {
 		return returnMap;
 	}
 
-	/*@RequestMapping(value = "/authenticateUser", method = RequestMethod.POST, headers = { "Accept=application/json" })
+	@RequestMapping(value = "/authenticateUser", method = RequestMethod.POST, headers = { "Accept=application/json" })
 	public @ResponseBody Map<String, String> authenticateUser(@RequestBody MasterUser masterUser,HttpServletResponse response){
 		CollegeDiaryLogger.debug(CLASS_NAME, "loggingUser", "Inside loggingUser method");
 		Map<String, String> returnMap = new HashMap<String,String>();
@@ -88,7 +93,7 @@ public class UserController implements Serializable {
 		}
 		CollegeDiaryLogger.debug(CLASS_NAME, "authenticateUser", "Inside authenticateUser method");
 		return returnMap;
-	}*/
+	}
 	
 
 	@RequestMapping(value = "/findUser", method = RequestMethod.POST, headers = { "Accept=application/json" }, produces = "application/json")
@@ -98,7 +103,7 @@ public class UserController implements Serializable {
 		ArrayList<MasterUser> usersList = null;
 		MasterUser user = null;
 		try{
-			 //usersList = (ArrayList) userService.findUsers();
+			 usersList = (ArrayList) userService.findUsers();
 			  for(int i=0; i < usersList.size(); i++)
 			 {
 				 user = (MasterUser)usersList.get(i);
@@ -113,4 +118,5 @@ public class UserController implements Serializable {
 		return usersList;
 	}
 
+	
 }

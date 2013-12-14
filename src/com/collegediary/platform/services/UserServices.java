@@ -3,34 +3,35 @@
  */
 package com.collegediary.platform.services;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
-
-import com.collegediary.common.CommonConstants;
-import com.collegediary.common.StringUtils;
 import com.collegediary.model.user.MasterUser;
 import com.collegediary.platform.dao.UserDAO;
+import com.collegediary.platform.hbm.CommonConstants;
+import com.collegediary.platform.hbm.StringUtils;
 
 /**
  * @author gaurav.khullar
  * 
  */
 public class UserServices implements IUserServices {
-
+	
 	private UserDAO userDAO;
 	
-
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
-
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-
 	public MasterUser createNewUser(MasterUser masterUser) {
 		return userDAO.createNewUser(masterUser);
 	}
@@ -43,14 +44,17 @@ public class UserServices implements IUserServices {
 		userDAO.updateUser(masterUser);
 	}
 	
+	public List<MasterUser> findUsers() {
+		return userDAO.findUsers();
+	}
 
 	/**
 	 * @param masterUser
 	 */
 	public void authenticateUser(MasterUser masterUser,HttpServletResponse response) {
 		
-		if(StringUtils.isNotNullOrNotEmpty(null)){
-			String token = new String(Base64.decodeBase64(null));
+		if(StringUtils.isNotNullOrNotEmpty(masterUser.getToken())){
+			String token = new String(Base64.decodeBase64(masterUser.getToken()));
 			System.out.println(token.substring(0, token.indexOf(':')));
 			System.out.println(token.substring(token.lastIndexOf(':')));
 			
@@ -58,8 +62,8 @@ public class UserServices implements IUserServices {
 			/** Have selectAll function providing allUser list can do we that also **/
 		    
 		}
-		else if (StringUtils.isNotNullOrNotEmpty(null)){ /*&& 
-				masterUser.getRemmberme().equalsIgnoreCase("on"))*/ 
+		else if (StringUtils.isNotNullOrNotEmpty(masterUser.getRemmberme()) && 
+				masterUser.getRemmberme().equalsIgnoreCase("on")) {
 
 			String signatureValue = DigestUtils.md5Hex(masterUser.getUsername()
 					+ ":" + CommonConstants.EXPIRYTIME + ":"
@@ -78,10 +82,11 @@ public class UserServices implements IUserServices {
 			}
 			System.out.println("Cookie = "+ tokenValue + " token = "+ tokenValueBase64 + "sign value = "+ signatureValue);
 			cookie.setPath("/");
-			//masterUser.setToken(tokenValueBase64);
+			masterUser.setToken(tokenValueBase64);
 			response.addCookie(cookie);
 			
 		}
+
 		userDAO.updateUser(masterUser);
 	}
 }

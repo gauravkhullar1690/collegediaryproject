@@ -5,6 +5,8 @@ package com.collegediary.platform.hbm;
 
 import java.util.List;
 
+import com.collegediary.model.user.MasterUser;
+
 /**
  * @author gaurav.khullar
  *
@@ -23,4 +25,5 @@ public interface IPersistenceService {
 	 public void remove(List objs);    
 	 public void saveOrUpdate(final Object obj);
 	 public void persist(Object obj);
+	 public List<MasterUser> findUsers();
 }
