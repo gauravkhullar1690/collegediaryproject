@@ -26,17 +26,21 @@ function emailRouteConfig($routeProvider) {
 $routeProvider.
 when('/', {
 controller: ListController,
-templateUrl: 'loginForm.html'
+templateUrl: 'templates/loginForm.html'
 }).
 // Notice that for the detail view, we specify a parameterized URL component
 // by placing a colon in front of the id
-when('/def.html', {
+when('templates/def.html', {
 controller: DetailController,
-templateUrl: 'def.html'
+templateUrl: 'templates/def.html'
 }).
+when('templates/loginSuccess.html', {
+	controller: DetailController,
+	templateUrl: 'templates/loginSuccess.html'
+	}).
 otherwise({
 	controller: ListController,
-	templateUrl: 'list.html'
+	templateUrl: 'templates/list.html'
 	//redirectTo: 'list.html'
 });
 }

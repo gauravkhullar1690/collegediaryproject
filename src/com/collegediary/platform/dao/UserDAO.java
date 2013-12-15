@@ -3,9 +3,7 @@
  */
 package com.collegediary.platform.dao;
 
-import java.util.Collection;
 import java.util.List;
-
 import com.collegediary.model.user.MasterUser;
 import com.collegediary.platform.hbm.AbstractDataAccessObject;
 
@@ -28,6 +26,11 @@ public class UserDAO extends AbstractDataAccessObject {
 	}
 
 	public List<MasterUser> findUsers() {
+		//return (List<MasterUser>)persistenceService.executeQuery("from com.collegediary.model.user.MasterUser mu where mu.username=?",new Object[] {"goravdhima"});
 		return persistenceService.findUsers();
+	}
+	
+	public List<MasterUser> findUserByName(String username) {
+		return (List<MasterUser>)persistenceService.executeQuery("from com.collegediary.model.user.MasterUser mu where mu.username=?",new Object[] {username});
 	}
 }

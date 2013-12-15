@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.LockMode;
+import org.hibernate.Query;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.collegediary.model.user.MasterUser;
 import com.collegediary.platform.logging.CollegeDiaryLogger;
-import org.hibernate.Query;
 
 /**
  * @author gaurav.khullar
@@ -116,7 +117,7 @@ public class PersistenceService implements IPersistenceService {
     }
     
     public int updateQuery(String sql, Object[] params) {
-    	CollegeDiaryLogger.trace(this.getClass().getName(), "executeQuery", "query :"+sql);
+    	CollegeDiaryLogger.trace(this.getClass().getName(), "updateQuery", "query :"+sql);
         Query query = entityManager.createQuery(sql);
         if (params != null) {
             for (int index = 0; index < params.length; index++) {
@@ -125,17 +126,17 @@ public class PersistenceService implements IPersistenceService {
             }
         }
         int numUpdate = query.executeUpdate();
-        CollegeDiaryLogger.trace(this.getClass().getName(), "executeQuery", "numUpdate : " + numUpdate);
+        CollegeDiaryLogger.trace(this.getClass().getName(), "updateQuery", "numUpdate : " + numUpdate);
         return numUpdate;
     }
     
     public int updateQuery(String sql, Map<String, Object> namedParams) {
-    	CollegeDiaryLogger.trace(this.getClass().getName(), "executeQuery", "query :"+sql);
+    	CollegeDiaryLogger.trace(this.getClass().getName(), "updateQuery", "query :"+sql);
     	Query query = entityManager.createQuery(sql);
         if (namedParams != null) {
 	        for (String name: namedParams.keySet()) {
 	            Object param = namedParams.get(name);
-	            CollegeDiaryLogger.trace(this.getClass().getName(), "executeQuery", "params["+name+"] :"+ param);
+	            CollegeDiaryLogger.trace(this.getClass().getName(), "updateQuery", "params["+name+"] :"+ param);
 	            if (param instanceof Collection) {
 	            	query.setParameterList(name, (Collection)param);
 	            } else {
@@ -144,7 +145,7 @@ public class PersistenceService implements IPersistenceService {
 	        }
         }
         int numUpdate = query.executeUpdate();
-        CollegeDiaryLogger.trace(this.getClass().getName(), "executeQuery", "numUpdate : " + numUpdate);
+        CollegeDiaryLogger.trace(this.getClass().getName(), "updateQuery", "numUpdate : " + numUpdate);
         return numUpdate;
     }
 }

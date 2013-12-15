@@ -17,7 +17,6 @@ public class CollegeDiaryLogger {
 	public static final String ERROR_NO_PREFIX = "Error #: ";
 	public static final String TEXT_PREFIX = "Text: ";
 	public static final String DETAILS_PREFIX = "Details: ";
-
 	/**
 	 * -----------------------------------------------------------------------
 	 * Public Methods (logging methods)
@@ -59,6 +58,7 @@ public class CollegeDiaryLogger {
 					concatMethodName(a_methodName, a_message.toString()));
 	}
 
+
 	/**
 	 * -----------------------------------------------------------------------
 	 * Public Methods (logging methods)
@@ -80,6 +80,8 @@ public class CollegeDiaryLogger {
 			Logger.getLogger(a_categoryName).trace(
 					concatMethodName(a_methodName, a_message.toString()));
 	}
+
+
 
 	/**
 	 * This method logs message of category with warn priority.

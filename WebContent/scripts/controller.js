@@ -22,9 +22,13 @@
  * 	Outputs		: 
  ************************************************************************/
 
-function ListController($scope,messages) {
-	$scope.messages = messages.query();
+var resMessage = {};
 
+function ListController($scope,messages) {
+	alert("list controller res="+resMessage.username);
+	//$scope.messages = messages.query();
+	console.log(resMessage);
+	$scope.messages = resMessage;
 }
 
 /************************************************************************
@@ -50,7 +54,6 @@ function DetailController($scope) {
 
 function logincontroller($scope,$http,$location)
 {
-	var resmessage={};
 	$scope.login =function(){
 		var url = "rest/user/findUser";
         /* while compiling form , angular created this object*/
@@ -58,11 +61,28 @@ function logincontroller($scope,$http,$location)
         /* post to server*/
         $http.post(url, data).success(function(response) {
             $scope.status = status;
-            $scope.message = response[0];
-            //$location.path("list.html");
+            resMessage = response;
+            console.log(response);
+            $scope.message = response[0]; 
+            if (response)
+            	$location.path("loginSuccess.html");
+            //$location.path("templates/list.html");
             return response;
         }).error(function(data, status, headers, config) {
                 console.log(status, headers, config);
         });	
     };
+}
+
+/************************************************************************
+ *  Function 	: userListController
+ *	Description : Called to select given user.
+ * 	Inputs 		: Scope
+ * 	Outputs		: 
+ ************************************************************************/
+
+function userListController($scope){
+	$scope.selectedUser = function(row) {
+		$scope.selectedRow = row;
+	};
 }

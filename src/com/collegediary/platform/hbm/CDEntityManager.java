@@ -4,16 +4,19 @@
 package com.collegediary.platform.hbm;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import org.hibernate.FlushMode;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import com.collegediary.model.user.MasterUser;
+import java.util.List;
 
 /**
  * @author gaurav.khullar
- * 
  *
  */
 public class CDEntityManager extends HibernateDaoSupport{
@@ -81,7 +84,13 @@ public class CDEntityManager extends HibernateDaoSupport{
 	public void setFlushMode(FlushMode flushMode) {
 		getSession().setFlushMode(flushMode);		
 	}
-	
+ 
+	public List<MasterUser> selectAll(){
+        DetachedCriteria criteria = DetachedCriteria.forClass(MasterUser.class);
+        return getHibernateTemplate().findByCriteria(criteria);
+    }
+
+		
 	public Query createQuery(String hqlString) {;
 		return getSession().createQuery(hqlString);
 	}
@@ -89,4 +98,5 @@ public class CDEntityManager extends HibernateDaoSupport{
 	public Query createSQLQuery(String sqlString) {
 		return (getSession().createSQLQuery(sqlString));
 	}
+ 
 }
