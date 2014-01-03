@@ -296,3 +296,7 @@ a.Forget_Password_Style:hover
 	padding: 0;
 	text-align: center;
 }
+
+.selected {
+	background-color: lightgreen;
+}

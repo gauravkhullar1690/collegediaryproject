@@ -96,9 +96,7 @@
     	<property name="sessionFactory"  ref="sessionFactory"/>
     </bean>
     <bean id="serviceLocator" class="com.collegediary.platform.hbm.ServiceLocator"/>
-    
     <bean id="persistenceService" class="com.collegediary.platform.hbm.PersistenceService" scope="prototype">
     	<property name="entityManager" ref="entityManager"/>
     </bean>
-    
 </beans>

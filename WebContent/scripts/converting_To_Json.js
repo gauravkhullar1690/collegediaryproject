@@ -84,20 +84,20 @@ $(document).on('ready',function() {
 		/* Currently nullability constratint so for checking make temporary */
 		json = {
 				"id" : "1",
-				"username" : "1",
+				"username" : "utsav",
 				"password" : "asdf",
 				"token" : getCookie("collegeDiaryRemmberMeKey")
 				};
 		
 		$.ajax({
 			type : "POST",
-			url : "/CollegeDiary/rest/user/loggingUser",
+			url : "/CollegeDiary/rest/user/authenticateUser",
 			contentType : "application/json; charset=UTF-8",
 			data : JSON.stringify(json, null, '\t'),
 			dataType : "json"
 		}).done(function() {
 			alert("Success to add to-do");
-			window.location = "#/def.html";
+			window.location = "#/templates/loginSuccess.html";
 		}).fail(function() {
 			alert("Failed to add to-do");
 		});

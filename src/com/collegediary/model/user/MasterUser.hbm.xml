@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
@@ -20,7 +19,7 @@
 		</property>
 		
 		<property name="email" type="java.lang.String">
-			<column name="EMAIL" not-null="true" />
+			<column name="EMAIL"  />
 		</property>
 		
 		<property name="password" type="java.lang.String">
@@ -34,43 +33,5 @@
 		<property name="token" type="java.lang.String">
 			<column name="TOKEN" />
 		</property>
-		
 	</class>
 </hibernate-mapping>
-=======
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-	<class name="com.collegediary.model.user.MasterUser" table="CLG_DIARY_MASTER_USER">
-	
-		<id name="username" type="java.lang.String">
-			<column name="USERNAME" not-null="true" />
-		</id>
-
-		<property name="email" type="java.lang.String">
-			<column name="EMAIL" not-null="true" />
-		</property>
-
-		<property name="password" type="java.lang.String">
-			<column name="PASSWORD" not-null="true" />
-		</property>
-
-		<property name="active" type="java.lang.Boolean">
-			<column name="ACTIVE" not-null="true" />
-		</property>
-
-		<property name="userType" type="com.collegediary.model.user.UserType">
-			<column name="USER_TYPE" />
-		</property>
-		
-		<property name="keepLoggedIn" type="java.lang.Boolean">
-			<column name="KEEP_LOGGED_IN" />
-		</property>
-		
-		<property name="authToken" type="java.lang.String">
-			<column name="AUTH_TOKEN" />
-		</property>
-	</class>
-</hibernate-mapping>
->>>>>>> changes does in MasterUser to support adding keep me logged in functionality

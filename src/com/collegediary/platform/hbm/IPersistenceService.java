@@ -4,6 +4,7 @@
 package com.collegediary.platform.hbm;
 
 import java.util.List;
+import java.util.Map;
 
 import com.collegediary.model.user.MasterUser;
 
@@ -26,4 +27,8 @@ public interface IPersistenceService {
 	 public void saveOrUpdate(final Object obj);
 	 public void persist(Object obj);
 	 public List<MasterUser> findUsers();
+	 public List executeQuery(String sql, Object[] params);
+	 public void updateQuery(String sqlQuery);
+	 public int updateQuery(String sql, Object[] params);
+	 public int updateQuery(String sql, Map<String, Object> namedParams);
 }
