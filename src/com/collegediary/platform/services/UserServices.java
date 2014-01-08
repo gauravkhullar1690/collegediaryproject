@@ -153,7 +153,7 @@ public class UserServices implements IUserServices {
 	public boolean authenticateUser(MasterUser masterUser,HttpServletResponse response) {
 		boolean result = CommonConstants.FAILURE;		
 		if(StringUtils.isNotNullOrNotEmpty(masterUser.getToken())){
-			String token = new String(Base64.decodeBase64(masterUser.getToken()));
+			String token = "";//new String(Base64.decodeBase64(masterUser.getToken()));
 			String username = token.substring(0, token.indexOf(':'));
 			List<MasterUser> users = userDAO.findUserByName(username);
 			System.out.println(token.substring(0, token.indexOf(':')));
