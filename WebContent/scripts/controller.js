@@ -25,7 +25,7 @@
 var resMessage = {};
 
 function ListController($scope,messages) {
-	alert("list controller res="+resMessage.username);
+	//alert("list controller res="+resMessage.username);
 	//$scope.messages = messages.query();
 	console.log(resMessage);
 	$scope.messages = resMessage;
@@ -55,7 +55,7 @@ function DetailController($scope) {
 function logincontroller($scope,$http,$location)
 {
 	$scope.login =function(){
-		var url = "rest/user/findUser";
+		var url = "rest/user/authenticateUser";
         /* while compiling form , angular created this object*/
         var data=$scope.user;  
         /* post to server*/
@@ -63,9 +63,9 @@ function logincontroller($scope,$http,$location)
             $scope.status = status;
             resMessage = response;
             console.log(response);
-            $scope.message = response[0]; 
+            $scope.message = response; 
             if (response)
-            	$location.path("loginSuccess.html");
+            	$location.path("/templates/loginSuccess.html");
             //$location.path("templates/list.html");
             return response;
         }).error(function(data, status, headers, config) {
@@ -85,4 +85,55 @@ function userListController($scope){
 	$scope.selectedUser = function(row) {
 		$scope.selectedRow = row;
 	};
+}
+
+/************************************************************************
+ *  Function 	: fileUploadController
+ *	Description : Called to upload multiple files server.It has event 
+ *				  registered with it which tells when done 	
+ * 	Inputs 		: Scope,Location
+ * 	Outputs		: 
+ ************************************************************************/
+
+function fileUploadController($scope,$location){
+	$scope.uploadFinished = function(e, data) {
+		console.log('We just finished uploading this baby...');
+		resMessage = "We just finished uploading this baby...";
+		$location.path("/templates/loginSuccess.html");
+	};
+}
+
+/************************************************************************
+ *  Function 	: webcamUploadController
+ *	Description : Called to upload webcam snapshot on server.
+ * 	Inputs 		: Scope,Location
+ * 	Outputs		: 
+ ************************************************************************/
+
+function webcamUploadController($scope){
+	$("#webcam").scriptcam({
+		showMicrophoneErrors : false,
+		cornerRadius : 20,
+		onError : onError,
+		cornerColor : 'e3e5e2',
+		onWebcamReady : onWebcamReady,
+		uploadImage : 'images/upload.gif',
+		onPictureAsBase64 : base64_tofield_and_image,
+		fileReady : savefile
+	});
+	resMessage = "We just finished uploading this baby...";
+}
+
+/************************************************************************
+ *  Function 	: loginSuccessController
+ *	Description : Called to display different message from server.
+ * 	Inputs 		: Scope
+ * 	Outputs		: 
+ ************************************************************************/
+
+function loginSuccessController($scope)
+{
+	alert("resMessage="+resMessage);
+	$scope.message = resMessage;
+	resMessage = {};
 }

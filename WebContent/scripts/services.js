@@ -17,13 +17,12 @@
  * Create a module for our core AMail services 
  */
 
-var aMailServices = angular.module('AMail', []);
+var aMailServices = angular.module('myApp', ['myApp.directives']);
 
 /*
  * Set up our route so the AMail service can find it
  */
 aMailServices.config(emailRouteConfig);
-
 
 /***************************************************************************
 *  

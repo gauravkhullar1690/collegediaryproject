@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html ng-app="AMail">
+<html ng-app="myApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>College Diary</title>
@@ -14,18 +14,28 @@
 <!-- /StyleSheets -->
 
 <!-- Scripts -->
-<script src="scripts/angular.min.js"></script>
-<script src="scripts/controller.js"></script>
+
 <script src="scripts/jquery-1.10.2.js"></script>
+<script src="scripts/angular.min.js"></script>
+<script src="scripts/jquery.ui.widget.js"></script>
+<script src="scripts/jquery.iframe-transport.js"></script>
+<script src="scripts/jquery.fileupload.js"></script>
 <script src="scripts/converting_To_Json.js"></script>
 <script src="scripts/remmberMeCheck.js"></script>
 <script src="scripts/routes.js"></script>
+<script src="scripts/controller.js"></script>
+<script src="scripts/directives.js"></script>
 <script src="scripts/services.js"></script>
+<script src="scripts/swfobject.js"></script>
+<script src="scripts/scriptcam.js"></script>
+<script src="scripts/webcamUpload.js"></script>
 <!-- /Scripts -->
 </head>
 <body>
 	<input type="hidden" name="token" id="token" value="">
-	<a href="#/list.html">click</a>
+	<a href="#/templates/def.html">click</a>
+	<a href="#/templates/fileUpload.html">click</a>
+	<a href="#/templates/webcamUpload.html">click</a>
 	<div ng-view></div>
 </body>
 </html>

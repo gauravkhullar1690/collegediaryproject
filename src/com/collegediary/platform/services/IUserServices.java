@@ -19,7 +19,10 @@ package com.collegediary.platform.services;
 import java.util.Collection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.collegediary.model.user.MasterUser;
 
@@ -69,11 +72,40 @@ public interface IUserServices {
 	 * @param MasterUser
 	 *           The bean for the user details.
 	 *           
+	 * @param HttpServletRequest   
+	 *        Request object to get session
+	 *           
 	 * @param HttpServletResponse
 	 * 			 Response object to add cookie
 	 * 
-	 * @return :  True or False
+	 * @return :  SUCCESS or FAILURE
 	 * 
 	 **/
-	public boolean authenticateUser(MasterUser masterUser,HttpServletResponse response);
+	public boolean authenticateUser(MasterUser masterUser,HttpServletRequest request,HttpServletResponse response);
+	/**
+	 * -----------------------------------------------------------------------
+	 * Public Methods (fileUpload)
+	 * -----------------------------------------------------------------------
+	 * This is method that uploads the file.
+	 * 
+	 * @param MultipartHttpServletRequest
+	 *            Request that uploads multiple files.
+	 * 
+	 * @return : SUCCESS or FAILURE
+	 * 
+	 **/
+	public boolean fileUpload(MultipartHttpServletRequest request);
+	/**
+	 * -----------------------------------------------------------------------
+	 * Public Methods (webcamUpload)
+	 * -----------------------------------------------------------------------
+	 * This is method that uploads the file.
+	 * 
+	 * @param HttpServletRequest
+	 *            Request object that uploads  webcam taken snapshot
+	 * 
+	 * @return : SUCCESS or FAILURE
+	 * 
+	 **/
+	public boolean webcamUpload(HttpServletRequest request);
 }

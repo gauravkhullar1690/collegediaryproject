@@ -30,12 +30,20 @@ templateUrl: 'templates/loginForm.html'
 }).
 // Notice that for the detail view, we specify a parameterized URL component
 // by placing a colon in front of the id
-when('templates/def.html', {
+when('/templates/def.html', {
 controller: DetailController,
 templateUrl: 'templates/def.html'
 }).
-when('templates/loginSuccess.html', {
-	controller: DetailController,
+when('/templates/fileUpload.html', {
+	controller: fileUploadController,
+	templateUrl: 'templates/fileUpload.html'
+}).
+when('/templates/webcamUpload.html', {
+	controller: webcamUploadController,
+	templateUrl: 'templates/webcamUpload.html'
+}).
+when('/templates/loginSuccess.html', {
+	controller: loginSuccessController,
 	templateUrl: 'templates/loginSuccess.html'
 	}).
 otherwise({

@@ -22,10 +22,11 @@ package com.collegediary.platform.hbm;
 
 public class CommonConstants 
 {
-	public static String SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY_REST_SERVICES = "collegeDiaryRemmberMeKey";
-	public static String REST_SERVICES_COOKIE_KEY = "collegeDiary_REST_SERVICE";
-	public static int EXPIRYTIME = 1800;
-	public static String DOMAIN = "http://localHost:8080/";
-	public static boolean SUCCESS = true;
-	public static boolean FAILURE = false;
+	public static final String SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY_REST_SERVICES = "collegeDiaryRemmberMeKey";
+	public static final String REST_SERVICES_COOKIE_KEY = "collegeDiary_REST_SERVICE";
+	public static final int EXPIRYTIME = 1800;
+	public static final String DOMAIN = "http://localHost:8080/";
+	public static final boolean SUCCESS = true;
+	public static final boolean FAILURE = false;
+	public static final String PATH = "D:/Study Material/Khullar/CollegeDiary/WebContent/images/";
 }
